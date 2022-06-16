@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="alert alert-danger">
+        <h3>Deseja realmente <strong>excluir</strong> {{ objeto }} ?</h3>
+
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">
+                    <i class="fa fa-trash"></i> Sim
+                </button>
+                <button class="btn btn-secondary" type="button" onclick="location.href='{{ url }}'">
+                    <i class="fa fa-undo"></i> Não
+                </button>
+            </form>
+    </div>
+{% endblock %}

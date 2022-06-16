@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ListaCli
+{% endblock %}
+
+{% block main %}
+<h3>Lista de Clientes</h3>
+
+<!--Barra de pesquisa somente para esta lista - SUBSTITUIDA PELA BARRA GERAL
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <form class="form-inline" method="post">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Pesquisa" name="nomeCliente">
+    <button class="btn btn-success" type="submit">Pesquisar</button>
+  </form>
+</nav>
+-->
+
+<!-- Carrega o componente de alerta -->
+  {% if messages %}
+     {% for mensagem in messages %}
+         <div class="alert alert-success alert-dismissible">
+             {{ mensagem }}
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+     {% endfor %}
+  {% endif %}
+
+
+  <ul class="list-group">
+      {% if string %}
+        <li class="list-group-item list-group-item-warning">{{string}}</li>
+      {% endif %}
+    {% for i in dados %}
+        <li class="list-group-item">
+            Nome: {{i.nome}} <br>
+            {% if i.endereco %}
+                End. {{i.endereco}}<br>
+            {% else %}
+                End. <br>
+            {% endif %}
+            {% if i.complemento %}
+                Compl. {{i.complemento}}<br>
+            {% else %}
+                Compl. <br>
+            {% endif %}
+            {% if i.bairro %}
+                Bairro {{i.bairro}}<br>
+            {% else %}
+                Bairro <br>
+            {% endif %}
+            {% if i.cidade %}
+                Cidade {{i.cidade}}<br>
+            {% else %}
+                Cidade <br>
+            {% endif %}
+            {% if i.cep %}
+                CEP {{i.cep}}<br>
+            {% else %}
+                CEP <br>
+            {% endif %}
+            E-mail {{i.email}}<br>
+            {% if i.foto %}
+                <img src="{{i.foto.url}}" width="200"> <br>
+            {% else %}
+                <img src="{% static 'img/perfil_generico.png' %}" width="200"> <br>
+            {% endif %}
+
+           <a class="btn btn-info" href="/altera_cliente/{{ i.id }}/">
+               <i class="fa fa-edit" style="font-size:20px;color:white;"></i>
+               Editar
+           </a>
+
+          <a class="btn btn-danger" href="/exclua_cliente/{{ i.id }}/">
+               <i class="fa fa-trash-o" style="font-size:20px;color:white;"></i>
+               Excluir</a> <br>
+        </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+
+

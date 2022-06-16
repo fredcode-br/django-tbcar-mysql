@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="alert alert-danger">
+        <h4> {{ string }} </h4>
+
+        <button class="btn btn-secondary" type="button" onclick="location.href='{{ url }}'">
+                    <i class="fa fa-undo"></i>OK</button>
+    </div>
+{% endblock %}

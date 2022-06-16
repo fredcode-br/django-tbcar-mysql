@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}
+    Formulário
+{% endblock %}
+
+{% block extrahead %}
+    {% if dateTime %}
+        {{ form.media }}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+<h3>{{titulo}}</h3>
+
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form | crispy}}
+        {% if formAtualiza %}
+            <button class="btn btn-success" type="submit">
+                <i class="fa fa-floppy-o"></i> {{ stringBotao }}
+            </button>
+        {% else %}
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-floppy-o"></i> {{ stringBotao }}
+            </button>
+        {% endif %}
+        <button class='btn btn-secondary' type='button' onclick="location.href='{{ url }}'">
+            <i class="fa fa-undo"></i>
+            Cancelar</button>
+    </form>
+
+{% endblock %}

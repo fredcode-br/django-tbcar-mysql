@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    CadVeic
+{% endblock %}
+
+{% block main %}
+<h3>Cadastro de Veiculo<h3>
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Cadastrar</button>
+        <button onclick="location.href='/'">Voltar</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<h3> Lista de Rotativos</h3>
+
+<!-- Carrega o componente de alerta -->
+  {% if messages %}
+     {% for mensagem in messages %}
+         <div class="alert alert-success alert-dismissible">
+             {{ mensagem }}
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+     {% endfor %}
+  {% endif %}
+
+    <ul class="list-group">
+        {% for i in dados %}
+            <li class="list-group-item">
+                Veículo: {{i.id_veiculo}} <br>
+                Entrada: {{i.data_entrada}} <br>
+                {% if i.data_saida %}
+                    Saida: {{i.data_saida}} <br>
+                    Forma de pagamento: {{i.forma_pagamento}} <br>
+                    <strong> Valor total: {{i.total}} </strong><br>
+                {% endif %}
+
+                <a class="btn btn-info" href = "/atualiza_rotativo/{{ i.id }}/">
+                    <i class="fa fa-edit" style="font-size:20px;color:white;"></i>
+                    Editar</a>
+                <a class="btn btn-danger" href = "/exclua_rotativo/{{ i.id }}/">
+                    <i class="fa fa-trash-o" style="font-size:20px;color:white;"></i>
+                    Excluir</a><br>
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

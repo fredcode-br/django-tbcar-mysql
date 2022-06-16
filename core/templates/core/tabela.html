@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Tabela
+{% endblock %}
+
+{% block main %}
+    <h3>Tabela de preços</h3>
+
+<!-- Carrega o componente de alerta -->
+  {% if messages %}
+     {% for mensagem in messages %}
+         <div class="alert alert-success alert-dismissible">
+             {{ mensagem }}
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+     {% endfor %}
+  {% endif %}
+
+    <ul class="list-group">
+        {% for i in dados %}
+            <li class="list-group-item">
+                <strong>{{i.descricao}}</strong><br>
+                Valor: {{i.valor}} <br>
+                Hora adicional: {{i.horaAdicional}} <br>
+
+                <a class="btn btn-info" href = "/altera_tabela/{{i.id}}/">
+                    <i class="fa fa-edit" style="font-size:20px;color:white;"></i>
+                    Editar</a>
+                <a class="btn btn-danger" href = "/exclua_tabela/{{i.id}}/">
+                    <i class="fa fa-trash-o" style="font-size:20px;color:white;"></i>
+                    Excluir</a><br>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

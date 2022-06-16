@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Autenticação</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Login</button>
+        <button type="button" onclick="location.href='/'">Cancelar</button>
+    </form>
+
+{% endblock %}

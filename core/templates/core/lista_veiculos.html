@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ListaVeic
+{% endblock %}
+
+{% block main %}
+<h3>Lista de Veículos</h3>
+
+<!-- Carrega o componente de alerta -->
+  {% if messages %}
+     {% for mensagem in messages %}
+         <div class="alert alert-success alert-dismissible">
+             {{ mensagem }}
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+     {% endfor %}
+  {% endif %}
+
+    <ul class="list-group">
+        {% for i in dados %}
+            <li class="list-group-item">
+                Cliente: {{i.id_cliente}}<br>
+                Fab. {{i.id_fabricante}}<br>
+                Mod. {{i.modelo}}<br>
+                {% if i.ano %}
+                    Ano {{i.ano}} <br>
+                {% else %}
+                    Ano <br>
+                {% endif %}
+                {% if i.cor %}
+                    Cor {{i.cor}}<br>
+                {% else %}
+                    Cor <br>
+                {% endif %}
+                Placa {{i.placa}}<br>
+                {% if i.foto %}<br>
+                    <img src="{{i.foto.url}}" width="200"> <br>
+                {% else %}
+                    <img src="{% static 'img/veiculo_generico.png' %}" width="200"> <br>
+                {% endif %}
+
+                <a class="btn btn-info" href = "/altera_veiculo/{{i.id}}/">
+                    <i class="fa fa-edit" style="font-size:20px;color:white;"></i>
+                    Editar</a>
+                <a class="btn btn-danger" href = "/exclua_veiculo/{{i.id}}/">
+                    <i class="fa fa-trash-o" style="font-size:20px;color:white;"></i>
+                    Excluir</a><br>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
