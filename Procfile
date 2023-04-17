@@ -1,0 +1,1 @@
+web: gunicorn tbcar.wsgi --log-file -
